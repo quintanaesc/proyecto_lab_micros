@@ -1,0 +1,12 @@
+Proyecto para la siguiente semana: 
+	
+	invernadero
+	
+Variables a considerar:
+	-luminicensia
+	-temperatura
+	-humedad
+
+sensores 
+	m35
+	resistencia
