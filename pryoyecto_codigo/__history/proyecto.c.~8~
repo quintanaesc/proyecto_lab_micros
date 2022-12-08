@@ -3,18 +3,15 @@
 #INCLUDE <16F887.H>
 #USE DELAY(CLOCK=4000000)
 #INCLUDE <LCD.C>
-#FUSES XT,NOPROTECT,NOWDT,NOBROWNOUT,PUT,NOLVP
+//#FUSES XT,NOPROTECT,NOWDT,NOBROWNOUT,PUT,NOLVP
+#FUSES XT,INTEC_IO,NOWDT,NOPROTECT,NOLVP,MCLR,BROWNOUT,PUT
 #BYTE PORTC=7
 #BYTE PORTB=6
 #BYTE PORTA=8
 
-
 int temperatura;
 int luz;
 int prendido;
-
-//para el pwm
-int Timer2, Poscaler;
 
 void interrupcion(){
    DELAY_MS(200);
@@ -64,16 +61,6 @@ void MAIN()
    LCD_INIT();       //Inicializa el LCD
    LCD_PUTC("\f"); 
    
-   //PWM del motor
-   //generamos una señal cuadrada de 3Khz
-    timer2=187; //se carga el timer 2 187
-    //preescaler=4; //preescaler solo puede tomar valores de:1-4-16
-    //para preescaler colocamos "T2_dic_BY_16"
-    poscaler=1;
-    setup_timer_2(t2_div_by_16, Timer2, Poscaler);
-    setup_ccp1(ccp_pwm);
-   
-   
    WHILE(TRUE)
    {  
       //capturamos la entrada del sensor de luz
@@ -89,11 +76,6 @@ void MAIN()
       set_adc_channel(8);
       term=read_adc();
       temperatura=calculaTem(term);
-      
-      //desidimos si ensender el ventilador
-      if(temperatura>30){
-         set_pwm1_duty(term);
-      }
       
       LCD_GOTOXY(3,1);       
       LCD_PUTC("Laboratorio Micros");    
