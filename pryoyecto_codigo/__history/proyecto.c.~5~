@@ -55,7 +55,6 @@ void MAIN()
    SET_TRIS_A(0);    //Configura PUERTO A como salida
    SET_TRIS_B(0XFF);    //Configura PUERTO B como entrada
    
-   //configuracion entradas analogicas
    setup_adc(ADC_CLOCK_INTERNAL); //CONFIGURAMOS RELOG INTERNO
    setup_adc_ports(sAn10); 
    setup_adc_ports(sAn8); 

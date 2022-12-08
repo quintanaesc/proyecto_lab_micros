@@ -21,7 +21,7 @@ int prendido;
 void interrupcion(){
    DELAY_MS(200);
    If(input(PIN_B0)){
-      PORTA+=1;
+      PORTA=0;
    }
 }
 int calculaTem(int corriente){
@@ -38,24 +38,18 @@ int calculaLuz(int corriente){
 
 void apagarLuz(int luz){
    if(luz<30 && prendido==1){
-      prendido=0;
-      output_toggle(pin_a1);
+      
    }
 }
 
 void encenderLuz(int luz){
    if(luz<30 && prendido==0){
-      prendido=1;
-      output_toggle(pin_a1);
+      
    }
 }
 
 void MAIN()
 {
-   SET_TRIS_A(0);    //Configura PUERTO A como salida
-   SET_TRIS_B(0XFF);    //Configura PUERTO B como entrada
-   
-   //configuracion entradas analogicas
    setup_adc(ADC_CLOCK_INTERNAL); //CONFIGURAMOS RELOG INTERNO
    setup_adc_ports(sAn10); 
    setup_adc_ports(sAn8); 
