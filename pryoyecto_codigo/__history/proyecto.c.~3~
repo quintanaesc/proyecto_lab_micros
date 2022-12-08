@@ -26,20 +26,16 @@ void interrupcion(){
 }
 int calculaTem(int corriente){
    int temperatura;
-   temperatura = corriente*(5/100);
    return temperatura;
 }
 
 int calculaLuz(int corriente){
    int luz;
-   luz = corriente*(5/100);
    return luz;
 }
 
 void apagarLuz(int luz){
-   if(luz<30 && prendido==1){
-      
-   }
+   
 }
 
 void encenderLuz(int luz){
