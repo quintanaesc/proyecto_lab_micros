@@ -1,1 +1,5 @@
->>> Warning 216 "proyecto.c" Line 104(1,2): Interrupts disabled during call to prevent re-entrancy:  (@delay_ms1)
+>>> Warning 216 "proyecto.c" Line 106(1,2): Interrupts disabled during call to prevent re-entrancy:  (@delay_ms1)
+>>> Warning 202 "proyecto.c" Line 14(6,13): Variable never used:   mensage
+      Memory usage:   ROM=9%      RAM=8% - 11%
+      0 Errors,  2 Warnings.
+Build Successful.

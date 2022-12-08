@@ -1,0 +1,16 @@
+[PROJECT]
+Target=proyecto.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=proyecto.c
+[Directories]
+Include=C:\Users\2im3q\AppData\Local\Temp\~sfx00004F90\Devices\;C:\Users\2im3q\AppData\Local\Temp\~sfx00004F90\Drivers\
+[proyecto.c]
+Type=4
+[mru-list]
+1=proyecto.c
+[Units]
+Count=1
+1=proyecto (main)
