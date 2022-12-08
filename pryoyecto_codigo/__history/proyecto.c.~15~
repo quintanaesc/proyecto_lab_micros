@@ -11,16 +11,16 @@
 int temperatura;
 int luz;
 int prendido;
-char mensage;
+
+//para el pwm
 int Timer2, Poscaler;
 
 #INT_EXT //interrupcion externa
 void interrupcion(){
-   output_toggle(pin_a0);
    DELAY_MS(200);
-   output_toggle(pin_a0);
+   PORTA+=1;
+   
 }
-
 int calculaTem(int corriente){
    int temperatura;
    temperatura = corriente*(5/100);
@@ -94,13 +94,13 @@ void MAIN()
       //desidimos si ensender el ventilador
       if(temperatura>30){
          set_pwm1_duty(term);
+      }
       
       LCD_GOTOXY(3,1);       
-      LCD_PUTC("INVERNADERO LAB DE MICROS");    
+      LCD_PUTC("Laboratorio Micros");    
       LCD_GOTOXY(6,2);       
       LCD_PUTC("Iluminacion: "+luz);
       LCD_GOTOXY(9,2);       
-      LCD_PUTC("temperadura: "+temperatura);  
-      }
+      LCD_PUTC("temperadura: "+temperatura);    
    } 
 }

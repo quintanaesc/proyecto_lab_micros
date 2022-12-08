@@ -11,16 +11,17 @@
 int temperatura;
 int luz;
 int prendido;
-char mensage;
+
+//para el pwm
 int Timer2, Poscaler;
 
 #INT_EXT //interrupcion externa
 void interrupcion(){
-   output_toggle(pin_a0);
    DELAY_MS(200);
-   output_toggle(pin_a0);
+   If(input(PIN_B0)){
+      PORTA+=1;
+   }
 }
-
 int calculaTem(int corriente){
    int temperatura;
    temperatura = corriente*(5/100);
@@ -55,6 +56,8 @@ void MAIN()
    SET_TRIS_A(0);    //Configura PUERTO A como salida
    SET_TRIS_B(0XFF);    //Configura PUERTO B como entrada
    
+   ENABLE_INTERRUPTS(GLOBAL); //Habilita todas las interrupciones
+   ENABLE_INTERRUPTS(INT_EXT); //Habilita la interrupción externa
    
    //configuracion entradas analogicas
    setup_adc(ADC_CLOCK_INTERNAL); //CONFIGURAMOS RELOG INTERNO
@@ -71,9 +74,6 @@ void MAIN()
     setup_timer_2(t2_div_by_16, Timer2, Poscaler);
     setup_ccp1(ccp_pwm);
    
-   //interrupciones
-   ENABLE_INTERRUPTS(GLOBAL); //Habilita todas las interrupciones
-   ENABLE_INTERRUPTS(INT_EXT); //Habilita la interrupción externa
    
    WHILE(TRUE)
    {  
@@ -94,13 +94,13 @@ void MAIN()
       //desidimos si ensender el ventilador
       if(temperatura>30){
          set_pwm1_duty(term);
+      }
       
       LCD_GOTOXY(3,1);       
-      LCD_PUTC("INVERNADERO LAB DE MICROS");    
+      LCD_PUTC("Laboratorio Micros");    
       LCD_GOTOXY(6,2);       
       LCD_PUTC("Iluminacion: "+luz);
       LCD_GOTOXY(9,2);       
-      LCD_PUTC("temperadura: "+temperatura);  
-      }
+      LCD_PUTC("temperadura: "+temperatura);    
    } 
 }

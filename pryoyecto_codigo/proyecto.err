@@ -1,1 +1,1 @@
-*** Error 111 "proyecto.c" Line 7(7,59): Unknown keyword in #FUSES   "INTEC_IO"
+>>> Warning 216 "proyecto.c" Line 104(1,2): Interrupts disabled during call to prevent re-entrancy:  (@delay_ms1)
