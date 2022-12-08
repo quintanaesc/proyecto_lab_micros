@@ -1,10 +1,15 @@
+//LCD_PUTC(c);// Muestra el caracter "C" en la próxima posición del LCD.
+//LCD_PUTC("/f");//Borra todo lo que haya en el display.
+//LCD_PUTC("/n");// Va al inicio de la segunda línea.
+//LCD_PUTC("/b"); //Se mueve una posición hacia atrás.
+//LCD_GOTOXY(x,y); //Ubica el cursor en la posición indicada por "X" y "Y". (1,1)
+//LCD_GETC(x,y); //Retorna el carácter ubicado en la posición X,Y del LCD.
 //frecuencia de pwm 3kh
 
 #INCLUDE <16F887.H>
 #USE DELAY(CLOCK=4000000)
 #INCLUDE <LCD.C>
-//#FUSES XT,NOPROTECT,NOWDT,NOBROWNOUT,PUT,NOLVP
-#FUSES XT,INTEC_IO,NOWDT,NOPROTECT,NOLVP,MCLR,BROWNOUT,PUT
+#FUSES XT,NOPROTECT,NOWDT,NOBROWNOUT,PUT,NOLVP
 #BYTE PORTC=7
 #BYTE PORTB=6
 #BYTE PORTA=8
@@ -47,9 +52,6 @@ void encenderLuz(int luz){
 
 void MAIN()
 {
-   int torch;     //corriente correspondiente al sensor de luz
-   int term;      //corriente correspondiente al termometro
-   
    SET_TRIS_A(0);    //Configura PUERTO A como salida
    SET_TRIS_B(0XFF);    //Configura PUERTO B como entrada
    
@@ -61,18 +63,14 @@ void MAIN()
    LCD_INIT();       //Inicializa el LCD
    LCD_PUTC("\f"); 
    
+   int torch;     //corriente correspondiente al sensor de luz
+   int term;      //corriente correspondiente al termometro
    WHILE(TRUE)
    {  
-      //capturamos la entrada del sensor de luz
       set_adc_channel(10);
       torch=read_adc(); 
       luz=calculaLuz(torch);
       
-      //desidimmos si apagar la luz , encenderla o ninguna
-      apagarLuz(luz);
-      encenderLuz(luz);
-      
-      //capturamos la entrada del censor de temperatura
       set_adc_channel(8);
       term=read_adc();
       temperatura=calculaTem(term);
